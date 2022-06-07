@@ -1,7 +1,7 @@
 import type {NextPage} from "next";
 
-const id: NextPage = () => {
-  return <div>Hello id</div>;
+const StorePage: NextPage = () => {
+  return <p>Hello id</p>;
 };
 
-export default id;
+export default StorePage;
