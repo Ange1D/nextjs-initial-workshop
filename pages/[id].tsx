@@ -26,10 +26,10 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
   };
 
   export const getStaticPaths: GetStaticPaths = async () => {
-    //const stores = await api.list();
+    const stores = await api.list();
   
     return {
-      paths: [],//stores.map((store) => ({ params: { id: store.id } })),
+      paths: stores.map((store) => ({ params: { id: store.id } })),
       fallback: "blocking",
     };
   };
