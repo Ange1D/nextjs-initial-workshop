@@ -13,7 +13,7 @@ const HomePage: NextPage<Props> = ({stores}) => {
   return (
   <main>
     {stores.map((store)=>(
-      <Link key={stores.id} passHref href={'/{store.id}'}>
+      <Link key={store.id} passHref href={`/${store.id}`}>
         <a>
         <StoreCard  store={store}/>
         </a>
