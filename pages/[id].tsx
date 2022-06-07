@@ -1,13 +1,38 @@
-import type {NextPage} from "next";
+import type {GetStaticPaths,GetStaticProps,NextPage} from "next";
 import Link from "next/link";
+import api from "../api";
+import StoreCard from "../components/StoreCard";
+import {Store} from "../types";
 
-const StorePage: NextPage = () => {
+interface Props{
+    store: Store;
+}
+
+const StorePage: NextPage<Props> = ({store}) => {
   return (
       <main>
-          <p>Hello id</p>
+          <StoreCard store={store} />
           <Link href="/">Ir a /</Link>
       </main>
   );
 };
+
+export const getStaticProps: GetStaticProps = async ({params}) => {
+    const store = await api.fetch(params?.id as string);
+  
+    return {
+      props: { store },
+    };
+  };
+
+  export const getStaticPaths: GetStaticPaths = async () => {
+    //const stores = await api.list();
+  
+    return {
+      paths: [],//stores.map((store) => ({ params: { id: store.id } })),
+      fallback: "blocking",
+    };
+  };
+  
 
 export default StorePage;
