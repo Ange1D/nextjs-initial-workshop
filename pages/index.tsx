@@ -1,19 +1,14 @@
 import type {NextPage} from "next";
-import { NextRouter,withRouter } from "next/router";
+import Link from "next/link";
 
-interface Props {
-  router: NextRouter;
-}
 
-const HomePage: NextPage<Props> = ({router}) => {
+const HomePage: NextPage = () => {
   return (
-    <main>
+  <main>
     <p>Hello index</p>
-    <a role="button" onClick={() => router.push("/id")}>
-    Ir a id
-    </a>
+    <Link href="/id">Ir a id</Link>
   </main>
   );
 };
 
-export default withRouter(HomePage);
+export default HomePage;

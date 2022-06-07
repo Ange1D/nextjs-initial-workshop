@@ -1,14 +1,11 @@
 import type {NextPage} from "next";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 const StorePage: NextPage = () => {
-  const router = useRouter();
   return (
       <main>
           <p>Hello id</p>
-          <a role="button" onClick={()=>router.push("/")}>
-              Ir a /
-          </a>
+          <Link href="/">Ir a /</Link>
       </main>
   );
 };
