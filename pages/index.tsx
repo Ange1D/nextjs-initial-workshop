@@ -1,4 +1,4 @@
-import type {GetServerSideProps, NextPage} from "next";
+import type {GetStaticProps, NextPage} from "next";
 import Link from "next/link";
 import api from "../api";
 import StoreCard from "../components/StoreCard";
@@ -23,13 +23,15 @@ const HomePage: NextPage<Props> = ({stores}) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const stores = await api.list();
 
   return {
     props: { stores },
+    revalidate: 60,
   };
 };
+
 
 
 export default HomePage;
