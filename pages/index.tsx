@@ -1,6 +1,7 @@
 import type {NextPage} from "next";
 import Link from "next/link";
 import {useState, useEffect} from "react";
+import StoreCard from "../components/StoreCard";
 import {Store} from "../types";
 
 
@@ -21,8 +22,13 @@ if (!stores.length) {
 
   return (
   <main>
-    <p>Hello index</p>
-    <Link href="/id">Ir a id</Link>
+    {stores.map((store)=>(
+      <Link key={stores.id} passHref href={'/{store.id}'}>
+        <a>
+        <StoreCard  store={store}/>
+        </a>
+      </Link>
+    ))}
   </main>
   );
 };
