@@ -1,24 +1,14 @@
-import type {NextPage} from "next";
+import type {GetServerSideProps, NextPage} from "next";
 import Link from "next/link";
-import {useState, useEffect} from "react";
+import api from "../api";
 import StoreCard from "../components/StoreCard";
 import {Store} from "../types";
 
-
-const HomePage: NextPage = () => {
-
-  const [stores, setStores] = useState<Store[]>([]);
-
-useEffect(() => {
-  fetch("/api/stores")
-    .then((res) => res.json())
-    .then((stores: Store[]) => setStores(stores));
-}, []);
-
-if (!stores.length) {
-  return <span>cargando...</span>;
+interface Props{
+  stores: Store[]
 }
 
+const HomePage: NextPage<Props> = ({stores}) => {
 
   return (
   <main>
@@ -32,5 +22,14 @@ if (!stores.length) {
   </main>
   );
 };
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const stores = await api.list();
+
+  return {
+    props: { stores },
+  };
+};
+
 
 export default HomePage;
